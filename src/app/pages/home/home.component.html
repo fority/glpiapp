@@ -1,28 +1,42 @@
-{{ listOfUser$ | async }} sdcsdacsac <nz-table></nz-table>
-
-<nz-table>
-  <thead>
-    <tr align="right">
-      <th>Phone No</th>
-      <th>Name</th>
-      <th>Deparment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>32</td>
-      <td>John Brown</td>
-      <td>New York No. 1 Lake Park</td>
-    </tr>
-    <tr>
-      <td>Jim Green</td>
-      <td>40</td>
-      <td>London No. 1 Lake Park</td>
-    </tr>
-    <tr>
-      <td>32</td>
-      <td>Joe Black</td>
-      <td>Sidney No. 1 Lake Park</td>
-    </tr>
-  </tbody>
-</nz-table>
+<div class="tableContainer">
+  <ng-container *ngIf="listOfUser$ | async as listOfUser">
+    <nz-table
+      #basicTable
+      [nzFrontPagination]="false"
+      [nzScroll]="{ x: '100px' }"
+      [nzSize]="'small'"
+      [nzWidthConfig]="widthConfig"
+      [nzData]="listOfUser"
+    >
+      <thead>
+        <tr>
+          <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+            {{ column.title }}
+          </th>
+        </tr>
+        <!-- <tr>
+          <th nzAlign="center" id="phone"><strong>Ext No</strong></th>
+          <th nzAlign="center" [nzEllipsis]="true" id="department">Department</th>
+          <th id="name">Name</th>
+          <th id="title">Title</th>
+          <th nzAlign="center" id="email">Email</th>
+         <th nzAlign="center" id="dkId">DK Number</th>
+        </tr> -->
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzAlign="center">
+            <strong>{{ data.phone2 }}</strong>
+          </td>
+          <td nzAlign="center" [nzEllipsis]="true">{{ data.department }}</td>
+          <td>{{ data.firstname }} {{ data.realname }}</td>
+          <td>{{ data.usertitles_id }}</td>
+          <!-- <td nzAlign="center">
+            <a nz-typography nzCopyable [nzCopyText]="ReturnEmail(data.name)">{{ data.name }}@dk-schweizer.com</a>
+          </td> -->
+          <!-- <td nzAlign="center">{{ data.registration_number }}</td> -->
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+</div>

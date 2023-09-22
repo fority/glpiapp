@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://192.168.102.114/glpi/apirest.php',
-  OidcBaseUrl: 'http://localhost:4200',
+  // apiBaseUrl: 'http://192.168.102.114/glpi/apirest.php',
+  // OidcBaseUrl: 'http://localhost:4200',
+  apiBaseUrl: 'https://portal.dkcorp.com/apirest.php',
+  OidcBaseUrl: 'https://localhost:4200',
 };
 
 /*
